@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkPCDReader.h
+  Module:    vtkPCLVoxelGrid.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,42 +12,42 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkPCDReader -
+// .NAME vtkPCLVoxelGrid -
 // .SECTION Description
 //
 
-#ifndef __vtkPCDReader_h
-#define __vtkPCDReader_h
+#ifndef __vtkPCLVoxelGrid_h
+#define __vtkPCLVoxelGrid_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkPCDReader : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkPCLVoxelGrid : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkPCDReader, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkPCLVoxelGrid, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkPCDReader *New();
+  static vtkPCLVoxelGrid *New();
 
-  vtkSetStringMacro(FileName);
-  vtkGetStringMacro(FileName);
+  vtkSetVector3Macro(LeafSize, double);
+  vtkGetVector3Macro(LeafSize, double);
 
 protected:
 
-  char* FileName;
+  double LeafSize[3];
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
 
-  vtkPCDReader();
-  virtual ~vtkPCDReader();
+  vtkPCLVoxelGrid();
+  virtual ~vtkPCLVoxelGrid();
 
 private:
-  vtkPCDReader(const vtkPCDReader&);  // Not implemented.
-  void operator=(const vtkPCDReader&);  // Not implemented.
+  vtkPCLVoxelGrid(const vtkPCLVoxelGrid&);  // Not implemented.
+  void operator=(const vtkPCLVoxelGrid&);  // Not implemented.
 };
 
 #endif

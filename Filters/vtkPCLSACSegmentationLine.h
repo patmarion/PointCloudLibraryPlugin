@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkPCLSACSegmentationPlane.h
+  Module:    vtkPCLSACSegmentationLine.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,23 +12,23 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkPCLSACSegmentationPlane -
+// .NAME vtkPCLSACSegmentationLine -
 // .SECTION Description
 //
 
-#ifndef __vtkPCLSACSegmentationPlane_h
-#define __vtkPCLSACSegmentationPlane_h
+#ifndef __vtkPCLSACSegmentationLine_h
+#define __vtkPCLSACSegmentationLine_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkPCLSACSegmentationPlane : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkPCLSACSegmentationLine : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkPCLSACSegmentationPlane, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkPCLSACSegmentationLine, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkPCLSACSegmentationPlane *New();
+  static vtkPCLSACSegmentationLine *New();
 
   vtkSetMacro(DistanceThreshold, double);
   vtkGetMacro(DistanceThreshold, double);
@@ -36,43 +36,41 @@ public:
   vtkSetMacro(MaxIterations, int);
   vtkGetMacro(MaxIterations, int);
 
-  vtkGetVector4Macro(PlaneCoefficients, double);
-  vtkGetVector3Macro(PlaneOrigin, double);
-  vtkGetVector3Macro(PlaneNormal, double);
+  vtkGetVector3Macro(LineOrigin, double);
+  vtkGetVector3Macro(LineDirection, double);
 
-  vtkSetMacro(PerpendicularConstraintEnabled, bool);
-  vtkGetMacro(PerpendicularConstraintEnabled, bool);
+  vtkSetMacro(ParallelLineConstraintEnabled, bool);
+  vtkGetMacro(ParallelLineConstraintEnabled, bool);
 
   vtkSetMacro(AngleEpsilon, double);
   vtkGetMacro(AngleEpsilon, double);
 
-  vtkGetVector3Macro(PerpendicularAxis, double);
-  vtkSetVector3Macro(PerpendicularAxis, double);
+  vtkGetVector3Macro(ParallelLine, double);
+  vtkSetVector3Macro(ParallelLine, double);
 
 protected:
 
   double DistanceThreshold;
   int MaxIterations;
 
-  bool PerpendicularConstraintEnabled;
-  double PerpendicularAxis[3];
+  bool ParallelLineConstraintEnabled;
+  double ParallelLine[3];
   double AngleEpsilon;
 
-  double PlaneCoefficients[4];
-  double PlaneOrigin[3];
-  double PlaneNormal[3];
+  double LineOrigin[3];
+  double LineDirection[3];
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
 
-  vtkPCLSACSegmentationPlane();
-  virtual ~vtkPCLSACSegmentationPlane();
+  vtkPCLSACSegmentationLine();
+  virtual ~vtkPCLSACSegmentationLine();
 
 private:
-  vtkPCLSACSegmentationPlane(const vtkPCLSACSegmentationPlane&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationPlane&);  // Not implemented.
+  vtkPCLSACSegmentationLine(const vtkPCLSACSegmentationLine&);  // Not implemented.
+  void operator=(const vtkPCLSACSegmentationLine&);  // Not implemented.
 };
 
 #endif

@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkPCLRadiusOutlierRemoval.h
+  Module:    vtkAnnotateOBBs.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,45 +12,49 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkPCLRadiusOutlierRemoval -
+// .NAME vtkAnnotateOBBs -
 // .SECTION Description
 //
 
-#ifndef __vtkPCLRadiusOutlierRemoval_h
-#define __vtkPCLRadiusOutlierRemoval_h
+#ifndef __vtkAnnotateOBBs_h
+#define __vtkAnnotateOBBs_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkPCLRadiusOutlierRemoval : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkAnnotateOBBs : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkPCLRadiusOutlierRemoval, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkAnnotateOBBs, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkPCLRadiusOutlierRemoval *New();
+  static vtkAnnotateOBBs *New();
 
-  vtkSetMacro(SearchRadius, double);
-  vtkGetMacro(SearchRadius, double);
+  vtkGetMacro(AnnotateLabelZero, bool);
+  vtkSetMacro(AnnotateLabelZero, bool);
 
-  vtkSetMacro(NeighborsInSearchRadius, int);
-  vtkGetMacro(NeighborsInSearchRadius, int);
+  int GetNumberOfBoundingBoxes();
+  void GetBoundingBoxOrigin(int boxId, double origin[3]);
+  void GetBoundingBoxEdge(int boxId, int edgeId, double edge[3]);
+
 
 protected:
-
-  double SearchRadius;
-  int NeighborsInSearchRadius;
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
-  vtkPCLRadiusOutlierRemoval();
-  virtual ~vtkPCLRadiusOutlierRemoval();
+  vtkAnnotateOBBs();
+  virtual ~vtkAnnotateOBBs();
+
+  bool AnnotateLabelZero;
 
 private:
-  vtkPCLRadiusOutlierRemoval(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
-  void operator=(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
+  vtkAnnotateOBBs(const vtkAnnotateOBBs&);  // Not implemented.
+  void operator=(const vtkAnnotateOBBs&);  // Not implemented.
+
+  class vtkInternal;
+  vtkInternal* Internal;
 };
 
 #endif

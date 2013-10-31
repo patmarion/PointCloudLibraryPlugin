@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkAnnotateOBBs.h
+  Module:    vtkPCDReader.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,41 +12,42 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkAnnotateOBBs -
+// .NAME vtkPCDReader -
 // .SECTION Description
 //
 
-#ifndef __vtkAnnotateOBBs_h
-#define __vtkAnnotateOBBs_h
+#ifndef __vtkPCDReader_h
+#define __vtkPCDReader_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkAnnotateOBBs : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkPCDReader : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkAnnotateOBBs, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkPCDReader, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkAnnotateOBBs *New();
+  static vtkPCDReader *New();
 
-  vtkGetMacro(AnnotateLabelZero, bool);
-  vtkSetMacro(AnnotateLabelZero, bool);
+  vtkSetStringMacro(FileName);
+  vtkGetStringMacro(FileName);
 
 protected:
+
+  char* FileName;
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
-  vtkAnnotateOBBs();
-  virtual ~vtkAnnotateOBBs();
 
-  bool AnnotateLabelZero;
+  vtkPCDReader();
+  virtual ~vtkPCDReader();
 
 private:
-  vtkAnnotateOBBs(const vtkAnnotateOBBs&);  // Not implemented.
-  void operator=(const vtkAnnotateOBBs&);  // Not implemented.
+  vtkPCDReader(const vtkPCDReader&);  // Not implemented.
+  void operator=(const vtkPCDReader&);  // Not implemented.
 };
 
 #endif

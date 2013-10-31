@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkPCLVoxelGrid.h
+  Module:    vtkPCLEigenCalculator.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,44 +12,45 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkPCLVoxelGrid -
+// .NAME vtkPCLEigenCalculator -
 // .SECTION Description
 //
 
-#ifndef __vtkPCLVoxelGrid_h
-#define __vtkPCLVoxelGrid_h
+#ifndef __vtkPCLEigenCalculator_h
+#define __vtkPCLEigenCalculator_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkPCLVoxelGrid : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkPCLEigenCalculator : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkPCLVoxelGrid, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkPCLEigenCalculator, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkPCLVoxelGrid *New();
+  static vtkPCLEigenCalculator *New();
 
-  vtkSetVector3Macro(LeafSize, double);
-  vtkGetVector3Macro(LeafSize, double);
+  vtkSetMacro(SearchRadius, double);
+  vtkGetMacro(SearchRadius, double);
+
 
 protected:
 
-  double LeafSize[3];
+  double SearchRadius;
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
+  vtkPCLEigenCalculator();
+  virtual ~vtkPCLEigenCalculator();
 
-  vtkPCLVoxelGrid();
-  virtual ~vtkPCLVoxelGrid();
+
+  virtual int FillInputPortInformation(int port, vtkInformation* info);
 
 private:
-  vtkPCLVoxelGrid(const vtkPCLVoxelGrid&);  // Not implemented.
-  void operator=(const vtkPCLVoxelGrid&);  // Not implemented.
+  vtkPCLEigenCalculator(const vtkPCLEigenCalculator&);  // Not implemented.
+  void operator=(const vtkPCLEigenCalculator&);  // Not implemented.
 };
 
 #endif
-
-

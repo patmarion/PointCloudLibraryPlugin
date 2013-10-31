@@ -91,6 +91,13 @@ vtkPCLSACSegmentationCylinder::vtkPCLSACSegmentationCylinder()
   this->DistanceThreshold = 0.05;
   this->MaxIterations = 200;
 
+  this->CylinderRadius = 0.0;
+  for (size_t i = 0; i < 3; ++i)
+    {
+    this->CylinderOrigin[i] = 0.0;
+    this->CylinderNormal[i] = 0.0;
+    }
+
   this->SetNumberOfInputPorts(1);
   this->SetNumberOfOutputPorts(1);
 }
@@ -126,11 +133,20 @@ int vtkPCLSACSegmentationCylinder::RequestData(
     modelCoefficients, 
     inlierIndices);
 
-  // cData[0..2] contains the coordinates of a point on
-  // the medial axis of the cylinder, cData[3..5] is a 
-  // direction vector and cData[6] is the radius of the 
-  // fitted cylinder.
-  //const std::vector<float> &cData = modelCoefficients->values;
+
+  if (modelCoefficients->values.size() != 7)
+    {
+    vtkErrorMacro("Error segmenting cylinder with RANSAC.");
+    return 0;
+    }
+
+  // store cylinder coefficients
+  for (size_t i = 0; i < 3; ++i)
+    {
+    this->CylinderOrigin[i] = modelCoefficients->values[i];
+    this->CylinderNormal[i] = modelCoefficients->values[i+3];
+    }
+  this->CylinderRadius = modelCoefficients->values[6];
 
   // pass thru input add labels
   vtkSmartPointer<vtkIntArray> labels = vtkPCLConversions::NewLabelsArray(inlierIndices, input->GetNumberOfPoints());

@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkPCLNormalEstimation.h
+  Module:    vtkPCLRadiusOutlierRemoval.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -12,45 +12,47 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
-// .NAME vtkPCLNormalEstimation -
+// .NAME vtkPCLRadiusOutlierRemoval -
 // .SECTION Description
 //
 
-#ifndef __vtkPCLNormalEstimation_h
-#define __vtkPCLNormalEstimation_h
+#ifndef __vtkPCLRadiusOutlierRemoval_h
+#define __vtkPCLRadiusOutlierRemoval_h
 
 #include <vtkPolyDataAlgorithm.h>
+#include <vtkPCLFiltersModule.h>
 
-
-class vtkPCLNormalEstimation : public vtkPolyDataAlgorithm
+class VTKPCLFILTERS_EXPORT vtkPCLRadiusOutlierRemoval : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeMacro(vtkPCLNormalEstimation, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkPCLRadiusOutlierRemoval, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
-  static vtkPCLNormalEstimation *New();
+  static vtkPCLRadiusOutlierRemoval *New();
 
   vtkSetMacro(SearchRadius, double);
   vtkGetMacro(SearchRadius, double);
 
+  vtkSetMacro(NeighborsInSearchRadius, int);
+  vtkGetMacro(NeighborsInSearchRadius, int);
 
 protected:
 
   double SearchRadius;
+  int NeighborsInSearchRadius;
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
                           vtkInformationVector *outputVector);
 
-  vtkPCLNormalEstimation();
-  virtual ~vtkPCLNormalEstimation();
-
-
-  virtual int FillInputPortInformation(int port, vtkInformation* info);
+  vtkPCLRadiusOutlierRemoval();
+  virtual ~vtkPCLRadiusOutlierRemoval();
 
 private:
-  vtkPCLNormalEstimation(const vtkPCLNormalEstimation&);  // Not implemented.
-  void operator=(const vtkPCLNormalEstimation&);  // Not implemented.
+  vtkPCLRadiusOutlierRemoval(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
+  void operator=(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
 };
 
 #endif
+
+

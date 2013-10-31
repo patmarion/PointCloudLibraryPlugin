@@ -22,8 +22,10 @@
 #define __vtkPCLConversions_h
 
 #include <vtkObject.h>
+#include <vtkPCLFiltersModule.h>
 #include <vtkSmartPointer.h>
 
+#include <pcl/pcl_base.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/PointIndices.h>
@@ -33,12 +35,12 @@ class vtkPolyData;
 class vtkCellArray;
 class vtkIntArray;
 
-class vtkPCLConversions : public vtkObject
+class VTKPCLFILTERS_EXPORT vtkPCLConversions : public vtkObject
 {
 public:
-        
+
   static vtkPCLConversions* New();
-     
+
   vtkTypeMacro(vtkPCLConversions, vtkObject);
 
   void PrintSelf(ostream& os, vtkIndent indent);
@@ -58,6 +60,7 @@ public:
     vtkPolyData* polyData);
 
   static vtkSmartPointer<vtkCellArray> NewVertexCells(vtkIdType numberOfVerts);
+  static void AddVertexCells(vtkPolyData* polyData);
 
   static vtkSmartPointer<vtkIntArray> NewLabelsArray(pcl::IndicesConstPtr indices, vtkIdType length);
   static vtkSmartPointer<vtkIntArray> NewLabelsArray(pcl::PointIndices::ConstPtr indices, vtkIdType length);

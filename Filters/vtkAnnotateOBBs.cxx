@@ -32,19 +32,19 @@
 //----------------------------------------------------------------------------
 namespace {
 
-  static void ComputeOBB(vtkPolyData* polyData, double cornerData[24])
+  struct BoundingBox
   {
-    Eigen::Vector3d origin, x, y, z, sizes;
-    vtkSmartPointer<vtkOBBTree> obb = vtkSmartPointer<vtkOBBTree>::New();
-    obb->ComputeOBB(polyData->GetPoints(), origin.data(), x.data(), y.data(), z.data(), sizes.data());
+    Eigen::Vector3d origin;
+    Eigen::Vector3d edges[3];
+  };
 
-    // make right handed
-    Eigen::Vector3d rightHandedZ = x.cross(y);
-    if (z.dot(rightHandedZ) < 0)
-      {
-      origin += z;
-      z *= -1;
-      }
+
+  static void CornerDataFromBoundingBox(const BoundingBox& box, double cornerData[24])
+  {
+    const Eigen::Vector3d& origin = box.origin;
+    const Eigen::Vector3d& x = box.edges[0];
+    const Eigen::Vector3d& y = box.edges[1];
+    const Eigen::Vector3d& z = box.edges[2];
 
     Eigen::Vector3d corners[8];
     corners[0] = origin;
@@ -63,7 +63,38 @@ namespace {
       }
   }
 
+  static BoundingBox ComputeOBB(vtkPolyData* polyData)
+  {
+    Eigen::Vector3d origin, x, y, z, sizes;
+    vtkSmartPointer<vtkOBBTree> obb = vtkSmartPointer<vtkOBBTree>::New();
+    obb->ComputeOBB(polyData->GetPoints(), origin.data(), x.data(), y.data(), z.data(), sizes.data());
+
+    // make right handed
+    Eigen::Vector3d rightHandedZ = x.cross(y);
+    if (z.dot(rightHandedZ) < 0)
+      {
+      origin += z;
+      z *= -1;
+      }
+
+    BoundingBox box;
+    box.origin = origin;
+    box.edges[0] = x;
+    box.edges[1] = y;
+    box.edges[2] = z;
+
+    return box;
+  }
+
 }
+
+//----------------------------------------------------------------------------
+class vtkAnnotateOBBs::vtkInternal
+{
+public:
+
+  std::vector<BoundingBox> BoundingBoxes;
+};
 
 
 //----------------------------------------------------------------------------
@@ -72,6 +103,7 @@ vtkStandardNewMacro(vtkAnnotateOBBs);
 //----------------------------------------------------------------------------
 vtkAnnotateOBBs::vtkAnnotateOBBs()
 {
+  this->Internal = new vtkInternal;
   this->SetNumberOfInputPorts(1);
   this->SetNumberOfOutputPorts(1);
   this->AnnotateLabelZero = true;
@@ -84,6 +116,27 @@ vtkAnnotateOBBs::vtkAnnotateOBBs()
 //----------------------------------------------------------------------------
 vtkAnnotateOBBs::~vtkAnnotateOBBs()
 {
+  delete this->Internal;
+}
+
+//----------------------------------------------------------------------------
+int vtkAnnotateOBBs::GetNumberOfBoundingBoxes()
+{
+  return static_cast<int>(this->Internal->BoundingBoxes.size());
+}
+
+//----------------------------------------------------------------------------
+void vtkAnnotateOBBs::GetBoundingBoxOrigin(int boxId, double origin[3])
+{
+  for (int i = 0; i < 3; ++i)
+    origin[i] = this->Internal->BoundingBoxes[boxId].origin[i];
+}
+
+//----------------------------------------------------------------------------
+void vtkAnnotateOBBs::GetBoundingBoxEdge(int boxId, int edgeId, double edge[3])
+{
+  for (int i = 0; i < 3; ++i)
+    edge[i] = this->Internal->BoundingBoxes[boxId].edges[edgeId][i];
 }
 
 //----------------------------------------------------------------------------
@@ -97,6 +150,8 @@ int vtkAnnotateOBBs::RequestData(
 
   vtkInformation *outInfo = outputVector->GetInformationObject(0);
   vtkPolyData *output = vtkPolyData::SafeDownCast(outInfo->Get(vtkDataObject::DATA_OBJECT()));
+
+  this->Internal->BoundingBoxes.clear();
 
   vtkDataArray* labels = this->GetInputArrayToProcess(0, inputVector);
   if (!labels)
@@ -128,8 +183,11 @@ int vtkAnnotateOBBs::RequestData(
     threshold->Update();
     vtkPolyData* labelPoints = threshold->GetOutput();
 
+    BoundingBox box = ComputeOBB(labelPoints);
+    this->Internal->BoundingBoxes.push_back(box);
+
     double cornerData[24];
-    ComputeOBB(labelPoints, cornerData);
+    CornerDataFromBoundingBox(box, cornerData);
 
     vtkSmartPointer<vtkOutlineSource> outline = vtkSmartPointer<vtkOutlineSource>::New();
     outline->SetBoxTypeToOriented();
