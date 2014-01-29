@@ -13,7 +13,9 @@ set(sources
   vtkPCLNormalEstimation.cxx
   vtkPCLOpenNISource.cxx
   vtkPCLRadiusOutlierRemoval.cxx
+  vtkPCLSACSegmentationCircle.cxx
   vtkPCLSACSegmentationCylinder.cxx
+  vtkPCLSACSegmentationLine.cxx
   vtkPCLSACSegmentationPlane.cxx
   vtkPCLVoxelGrid.cxx
   )
