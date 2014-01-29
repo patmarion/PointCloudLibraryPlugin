@@ -20,9 +20,9 @@
 #define __vtkPCLSACSegmentationCylinder_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLSACSegmentationCylinder : public vtkPolyDataAlgorithm
+
+class vtkPCLSACSegmentationCylinder : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLSACSegmentationCylinder, vtkPolyDataAlgorithm);
@@ -45,21 +45,14 @@ public:
   vtkSetMacro(NormalDistanceWeight, double);
   vtkGetMacro(NormalDistanceWeight, double);
 
-  vtkGetVector3Macro(CylinderOrigin, double);
-  vtkGetVector3Macro(CylinderNormal, double);
-  vtkGetMacro(CylinderRadius, double);
-
 protected:
 
   double NormalDistanceWeight;
   double DistanceThreshold;
   double RadiusLimit;
   double SearchRadius;
+  
   int MaxIterations;
-
-  double CylinderRadius;
-  double CylinderOrigin[3];
-  double CylinderNormal[3];
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,

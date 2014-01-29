@@ -20,9 +20,9 @@
 #define __vtkPCLNormalEstimation_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLNormalEstimation : public vtkPolyDataAlgorithm
+
+class vtkPCLNormalEstimation : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLNormalEstimation, vtkPolyDataAlgorithm);

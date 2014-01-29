@@ -20,9 +20,9 @@
 #define __vtkPCLOpenNISource_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLOpenNISource : public vtkPolyDataAlgorithm
+
+class vtkPCLOpenNISource : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLOpenNISource, vtkPolyDataAlgorithm);

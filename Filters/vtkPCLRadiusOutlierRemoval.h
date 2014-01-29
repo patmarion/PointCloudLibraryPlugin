@@ -20,9 +20,9 @@
 #define __vtkPCLRadiusOutlierRemoval_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLRadiusOutlierRemoval : public vtkPolyDataAlgorithm
+
+class vtkPCLRadiusOutlierRemoval : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLRadiusOutlierRemoval, vtkPolyDataAlgorithm);

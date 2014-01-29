@@ -24,8 +24,7 @@
 
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
-//#include <pcl/io/openni_grabber.h>
-#include <pcl/io/grabber.h>
+#include <pcl/io/openni_grabber.h>
 #include <boost/thread/thread.hpp>
 
 typedef pcl::PointCloud<pcl::PointXYZRGBA> Cloud;
@@ -72,7 +71,7 @@ public:
   }
 
   bool NewData;
-  pcl::Grabber* Grabber;
+  pcl::OpenNIGrabber* Grabber;
   boost::mutex mutex;
   vtkSmartPointer<vtkPolyData> PolyData;
 
@@ -102,7 +101,7 @@ void vtkPCLOpenNISource::StartGrabber()
 {
   if (!this->Internal->Grabber)
     {
-    this->Internal->Grabber = 0;//new pcl::OpenNIGrabber("");
+    this->Internal->Grabber = new pcl::OpenNIGrabber("");
     this->Internal->Callback = boost::bind(&vtkPCLOpenNISource::vtkInternal::HandleIncomingCloud, this->Internal, _1);
     this->Internal->Grabber->registerCallback(this->Internal->Callback);
     }

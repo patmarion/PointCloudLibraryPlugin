@@ -9,14 +9,11 @@ set(sources
   vtkAnnotateOBBs.cxx
   vtkPCDReader.cxx
   vtkPCLConversions.cxx
-  vtkPCLEigenCalculator.cxx
   vtkPCLEuclideanClusterExtraction.cxx
   vtkPCLNormalEstimation.cxx
   vtkPCLOpenNISource.cxx
   vtkPCLRadiusOutlierRemoval.cxx
-  vtkPCLSACSegmentationCircle.cxx
   vtkPCLSACSegmentationCylinder.cxx
-  vtkPCLSACSegmentationLine.cxx
   vtkPCLSACSegmentationPlane.cxx
   vtkPCLVoxelGrid.cxx
   )

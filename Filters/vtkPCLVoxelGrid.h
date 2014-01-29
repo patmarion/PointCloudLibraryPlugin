@@ -20,9 +20,9 @@
 #define __vtkPCLVoxelGrid_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLVoxelGrid : public vtkPolyDataAlgorithm
+
+class vtkPCLVoxelGrid : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLVoxelGrid, vtkPolyDataAlgorithm);

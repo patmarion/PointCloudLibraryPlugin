@@ -20,9 +20,9 @@
 #define __vtkPCLSACSegmentationPlane_h
 
 #include <vtkPolyDataAlgorithm.h>
-#include <vtkPCLFiltersModule.h>
 
-class VTKPCLFILTERS_EXPORT vtkPCLSACSegmentationPlane : public vtkPolyDataAlgorithm
+
+class vtkPCLSACSegmentationPlane : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLSACSegmentationPlane, vtkPolyDataAlgorithm);
