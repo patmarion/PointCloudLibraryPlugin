@@ -11,7 +11,6 @@ set(sources
   vtkPCLConversions.cxx
   vtkPCLEuclideanClusterExtraction.cxx
   vtkPCLNormalEstimation.cxx
-  vtkPCLOpenNISource.cxx
   vtkPCLRadiusOutlierRemoval.cxx
   vtkPCLSACSegmentationCircle.cxx
   vtkPCLSACSegmentationCylinder.cxx
@@ -20,6 +19,9 @@ set(sources
   vtkPCLVoxelGrid.cxx
   )
 
+if(USE_OPENNI)
+  list(APPEND sources vtkPCLOpenNISource.cxx)
+endif()
 
 set(deps
   ${PCL_LIBRARIES}
