@@ -1,4 +1,4 @@
-find_package(PCL REQUIRED)
+find_package(PCL ${PCL_REQUIRED_VERSION} REQUIRED)
 
 include_directories(${PCL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
