@@ -25,6 +25,7 @@
 #include <vtkPCLFiltersModule.h>
 #include <vtkSmartPointer.h>
 
+#include <pcl/pcl_base.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/PointIndices.h>
@@ -37,9 +38,9 @@ class vtkIntArray;
 class VTKPCLFILTERS_EXPORT vtkPCLConversions : public vtkObject
 {
 public:
-        
+
   static vtkPCLConversions* New();
-     
+
   vtkTypeMacro(vtkPCLConversions, vtkObject);
 
   void PrintSelf(ostream& os, vtkIndent indent);

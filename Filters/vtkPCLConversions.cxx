@@ -65,16 +65,34 @@ vtkSmartPointer<vtkPolyData> TemplatedPolyDataFromPCDFile(const std::string& fil
 //----------------------------------------------------------------------------
 vtkSmartPointer<vtkPolyData> vtkPCLConversions::PolyDataFromPCDFile(const std::string& filename)
 {
+
   int version;
   int type;
-  int idx;
-
-  sensor_msgs::PointCloud2 cloud;
   Eigen::Vector4f origin;
   Eigen::Quaternionf orientation;
   pcl::PCDReader reader;
+
+#if PCL_VERSION_COMPARE(<,1,6,0)
+
+  int idx;
+  sensor_msgs::PointCloud2 cloud;
   reader.readHeader(filename, cloud, origin, orientation, version, type, idx);
 
+#elif PCL_VERSION_COMPARE(<,1,7,0)
+
+  unsigned int idx;
+  int offset = 0;
+  sensor_msgs::PointCloud2 cloud;
+  reader.readHeader(filename, cloud, origin, orientation, version, type, idx, offset);
+
+#else
+
+  unsigned int idx;
+  int offset = 0;
+  pcl::PCLPointCloud2 cloud;
+  reader.readHeader(filename, cloud, origin, orientation, version, type, idx, offset);
+
+#endif
 
   if (pcl::getFieldIndex(cloud, "rgba") != -1) {
     return TemplatedPolyDataFromPCDFile<pcl::PointXYZRGBA>(filename);
