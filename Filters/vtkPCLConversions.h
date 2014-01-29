@@ -22,6 +22,7 @@
 #define __vtkPCLConversions_h
 
 #include <vtkObject.h>
+#include <vtkPCLFiltersModule.h>
 #include <vtkSmartPointer.h>
 
 #include <pcl/point_cloud.h>
@@ -33,7 +34,7 @@ class vtkPolyData;
 class vtkCellArray;
 class vtkIntArray;
 
-class vtkPCLConversions : public vtkObject
+class VTKPCLFILTERS_EXPORT vtkPCLConversions : public vtkObject
 {
 public:
         
