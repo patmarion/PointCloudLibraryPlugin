@@ -33,6 +33,11 @@ public:
   vtkGetMacro(AnnotateLabelZero, bool);
   vtkSetMacro(AnnotateLabelZero, bool);
 
+  int GetNumberOfBoundingBoxes();
+  void GetBoundingBoxOrigin(int boxId, double origin[3]);
+  void GetBoundingBoxEdge(int boxId, int edgeId, double edge[3]);
+
+
 protected:
 
   virtual int RequestData(vtkInformation *request,
@@ -47,6 +52,9 @@ protected:
 private:
   vtkAnnotateOBBs(const vtkAnnotateOBBs&);  // Not implemented.
   void operator=(const vtkAnnotateOBBs&);  // Not implemented.
+
+  class vtkInternal;
+  vtkInternal* Internal;
 };
 
 #endif
