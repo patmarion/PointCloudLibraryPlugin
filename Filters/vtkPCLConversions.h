@@ -60,6 +60,7 @@ public:
     vtkPolyData* polyData);
 
   static vtkSmartPointer<vtkCellArray> NewVertexCells(vtkIdType numberOfVerts);
+  static void AddVertexCells(vtkPolyData* polyData);
 
   static vtkSmartPointer<vtkIntArray> NewLabelsArray(pcl::IndicesConstPtr indices, vtkIdType length);
   static vtkSmartPointer<vtkIntArray> NewLabelsArray(pcl::PointIndices::ConstPtr indices, vtkIdType length);

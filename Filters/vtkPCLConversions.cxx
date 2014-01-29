@@ -314,6 +314,17 @@ vtkSmartPointer<vtkCellArray> vtkPCLConversions::NewVertexCells(vtkIdType number
 }
 
 //----------------------------------------------------------------------------
+void vtkPCLConversions::AddVertexCells(vtkPolyData* polyData)
+{
+  if (!polyData || !polyData->GetNumberOfPoints())
+  {
+    return;
+  }
+
+  polyData->SetVerts(NewVertexCells(polyData->GetNumberOfPoints()));
+}
+
+//----------------------------------------------------------------------------
 void vtkPCLConversions::PerformPointCloudConversionBenchmark(vtkPolyData* polyData)
 {
   if (!polyData)
