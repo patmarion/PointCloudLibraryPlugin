@@ -45,14 +45,21 @@ public:
   vtkSetMacro(NormalDistanceWeight, double);
   vtkGetMacro(NormalDistanceWeight, double);
 
+  vtkGetVector3Macro(CylinderOrigin, double);
+  vtkGetVector3Macro(CylinderNormal, double);
+  vtkGetMacro(CylinderRadius, double);
+
 protected:
 
   double NormalDistanceWeight;
   double DistanceThreshold;
   double RadiusLimit;
   double SearchRadius;
-  
   int MaxIterations;
+
+  double CylinderRadius;
+  double CylinderOrigin[3];
+  double CylinderNormal[3];
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
