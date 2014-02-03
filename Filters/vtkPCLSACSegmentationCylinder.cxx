@@ -62,7 +62,7 @@ void ComputeSACSegmentationCylinder(pcl::PointCloud<pcl::PointXYZ>::ConstPtr clo
   modelCoefficients = pcl::ModelCoefficients::Ptr(new pcl::ModelCoefficients);
 
   Eigen::Vector3f axis(0,0,1.0);
- 
+
   // Perform RANSAC fitting
   seg.setOptimizeCoefficients (true);
   seg.setModelType(pcl::SACMODEL_CYLINDER);

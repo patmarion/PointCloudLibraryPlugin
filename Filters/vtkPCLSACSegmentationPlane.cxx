@@ -169,6 +169,12 @@ int vtkPCLSACSegmentationPlane::RequestData(
                                 inlierIndices);
     }
 
+  if (modelCoefficients->values.size() != 4)
+    {
+    vtkErrorMacro("Error segmenting plane with RANSAC.");
+    return 0;
+    }
+
   // store plane coefficients
   for (size_t i = 0; i < modelCoefficients->values.size(); ++i)
     {

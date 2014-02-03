@@ -149,6 +149,12 @@ int vtkPCLSACSegmentationLine::RequestData(
                                inlierIndices);
     }
 
+  if (modelCoefficients->values.size() != 6)
+    {
+    vtkErrorMacro("Error segmenting line with RANSAC.");
+    return 0;
+    }
+
   // store line coefficients
   for (size_t i = 0; i < 3; ++i)
     {
