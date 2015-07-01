@@ -21,4 +21,8 @@ function(wrap_python library_name sources)
   if(WIN32 AND NOT CYGWIN)
     set_target_properties(${library_name}Python PROPERTIES SUFFIX ".pyd")
   endif(WIN32 AND NOT CYGWIN)
+
+  install(TARGETS ${library_name}Python DESTINATION lib/python2.7/site-packages)
+  install(TARGETS ${library_name}PythonD DESTINATION lib)
+
 endfunction()
