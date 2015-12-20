@@ -38,9 +38,11 @@ if(USE_OPENNI)
   list(APPEND headers vtkPCLOpenNISource.h)
 endif()
 
+set(VTK_LIBRARIES vtkFiltering vtkIO vtkGraphics)
+
 set(deps
   ${PCL_LIBRARIES}
-  vtkFiltering vtkIO
+  ${VTK_LIBRARIES}
   )
 
 
