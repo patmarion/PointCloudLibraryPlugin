@@ -38,13 +38,21 @@ if(USE_OPENNI)
   list(APPEND headers vtkPCLOpenNISource.h)
 endif()
 
-set(VTK_LIBRARIES vtkFiltering vtkIO vtkGraphics)
+set(VTK_LIBRARIES
+  vtkInteractionWidgets
+  vtkInteractionStyle
+  vtkRenderingFreeType
+  vtkRenderingCore
+  vtkRendering${VTK_RENDERING_BACKEND}
+  vtkFiltersExtraction
+  vtkFiltersCore
+  vtkCommonCore
+  )
 
 set(deps
   ${PCL_LIBRARIES}
   ${VTK_LIBRARIES}
   )
-
 
 set(library_name vtkPCLFilters)
 
