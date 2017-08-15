@@ -70,6 +70,8 @@ install(FILES
   DESTINATION include/vtkPCLFilters)
 
 if(VTK_WRAP_PYTHON)
+  find_package(PythonLibs REQUIRED)
+  find_package(PythonInterp REQUIRED)
   include_directories(${VTK_PYTHON_INCLUDE_DIR})
   include(${CMAKE_SOURCE_DIR}/cmake/wrap-python.cmake)
   wrap_python(${library_name} "${sources}")

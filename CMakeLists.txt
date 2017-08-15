@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 
 option(BUILD_TESTING "Build with tests enabled." ON)
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-option(USE_OPENNI "Build with the OpenNI filters, required PCL OpenNI support." OFF)
+option(USE_OPENNI "Build with the OpenNI filters, requires PCL OpenNI support." OFF)
 
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
 set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
