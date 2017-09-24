@@ -58,7 +58,6 @@ set(library_name vtkPCLFilters)
 
 add_library(${library_name} ${sources})
 target_link_libraries(${library_name} ${deps})
-set_target_properties(${library_name}  PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
 install(TARGETS ${library_name}
     RUNTIME DESTINATION bin
