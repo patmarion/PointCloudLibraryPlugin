@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLRadiusOutlierRemoval : public vtkPolyDataAlgori
 {
 public:
   vtkTypeMacro(vtkPCLRadiusOutlierRemoval, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLRadiusOutlierRemoval *New();
 
@@ -43,10 +43,10 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
   vtkPCLRadiusOutlierRemoval();
-  virtual ~vtkPCLRadiusOutlierRemoval();
+  virtual ~vtkPCLRadiusOutlierRemoval() VTKPCLFILTERS_OVERRIDE;
 
 private:
   vtkPCLRadiusOutlierRemoval(const vtkPCLRadiusOutlierRemoval&)

@@ -43,7 +43,7 @@ class VTK_EXPORT vtkParticlePartitionFilter : public vtkDataObjectAlgorithm
   public:
     static vtkParticlePartitionFilter *New();
     vtkTypeMacro(vtkParticlePartitionFilter,vtkDataObjectAlgorithm);
-    void PrintSelf(ostream& os, vtkIndent indent);
+    void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
     // Description:
     // By default this filter uses the global controller,
@@ -87,25 +87,25 @@ class VTK_EXPORT vtkParticlePartitionFilter : public vtkDataObjectAlgorithm
     bool GatherDataArrayInfo(vtkDataArray *data, int &datatype, std::string &dataname, int &numComponents);
 
     // Override to specify support for vtkPointSet input type.
-    virtual int FillInputPortInformation(int port, vtkInformation* info);
+    virtual int FillInputPortInformation(int port, vtkInformation* info) VTKPCLFILTERS_OVERRIDE;
 
 	  // Override to specify different type of output
-	  virtual int FillOutputPortInformation(int vtkNotUsed(port), 
-		  vtkInformation* info);
+	  virtual int FillOutputPortInformation(int vtkNotUsed(port),
+		  vtkInformation* info) VTKPCLFILTERS_OVERRIDE;
 
     // Description:
     virtual int RequestInformation(vtkInformation*,
                             vtkInformationVector**,
-                            vtkInformationVector*);
+                            vtkInformationVector*) VTKPCLFILTERS_OVERRIDE;
     // Description:
-    virtual int RequestUpdateExtent(vtkInformation*, 
-                                   vtkInformationVector**, 
-                                   vtkInformationVector*);
     
+    virtual int RequestUpdateExtent(vtkInformation*,
+                                   vtkInformationVector**,
+                                   vtkInformationVector*) VTKPCLFILTERS_OVERRIDE;
     // Description:
     virtual int RequestData(vtkInformation*,
                             vtkInformationVector**,
-                            vtkInformationVector*);
+                            vtkInformationVector*) VTKPCLFILTERS_OVERRIDE;
 //BTX
     vtkSmartPointer<vtkIdTypeArray> GenerateGlobalIds(vtkIdType N, const char *idname);
 

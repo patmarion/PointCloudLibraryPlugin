@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCDReader : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCDReader, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCDReader *New();
 
@@ -39,11 +39,11 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
 
   vtkPCDReader();
-  virtual ~vtkPCDReader();
+  virtual ~vtkPCDReader() VTKPCLFILTERS_OVERRIDE;
 
 private:
   vtkPCDReader(const vtkPCDReader&) VTKPCLFILTERS_DELETE_FUNCTION;

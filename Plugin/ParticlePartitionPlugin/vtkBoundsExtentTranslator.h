@@ -30,8 +30,8 @@ class VTK_EXPORT vtkBoundsExtentTranslator : public vtkExtentTranslator
 {
 public:
   vtkTypeMacro(vtkBoundsExtentTranslator,vtkExtentTranslator);
-  void PrintSelf(ostream& os, vtkIndent indent);
   
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
   static vtkBoundsExtentTranslator* New();
 
   // Description:

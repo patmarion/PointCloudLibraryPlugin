@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkAnnotateOBBs : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkAnnotateOBBs, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkAnnotateOBBs *New();
 
@@ -42,10 +42,10 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
   vtkAnnotateOBBs();
-  virtual ~vtkAnnotateOBBs();
+  virtual ~vtkAnnotateOBBs() VTKPCLFILTERS_OVERRIDE;
 
   bool AnnotateLabelZero;
 

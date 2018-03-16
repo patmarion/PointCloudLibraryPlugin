@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLVoxelGrid : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLVoxelGrid, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLVoxelGrid *New();
 
@@ -39,11 +39,11 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
 
   vtkPCLVoxelGrid();
-  virtual ~vtkPCLVoxelGrid();
+  virtual ~vtkPCLVoxelGrid() VTKPCLFILTERS_OVERRIDE;
 
 private:
   vtkPCLVoxelGrid(const vtkPCLVoxelGrid&) VTKPCLFILTERS_DELETE_FUNCTION;
