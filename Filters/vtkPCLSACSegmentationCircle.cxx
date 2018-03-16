@@ -37,8 +37,8 @@ void ComputeSACSegmentationCircle(pcl::PointCloud<pcl::PointXYZ>::ConstPtr cloud
                                   int maxIterations,
                                   const Eigen::Vector2d& radiusLimit,
                                   bool radiusConstraintEnabled,
-                                  const Eigen::Vector3d& parallelLine,
-                                  bool parallelLineEnabled,
+                                  const Eigen::Vector3d& vtkNotUsed(parallelLine),
+                                  bool vtkNotUsed(parallelLineEnabled),
                                   pcl::ModelCoefficients::Ptr &modelCoefficients,
                                   pcl::PointIndices::Ptr &inliers)
 {
