@@ -49,8 +49,10 @@ protected:
   virtual ~vtkPCLRadiusOutlierRemoval();
 
 private:
-  vtkPCLRadiusOutlierRemoval(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
-  void operator=(const vtkPCLRadiusOutlierRemoval&);  // Not implemented.
+  vtkPCLRadiusOutlierRemoval(const vtkPCLRadiusOutlierRemoval&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLRadiusOutlierRemoval&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

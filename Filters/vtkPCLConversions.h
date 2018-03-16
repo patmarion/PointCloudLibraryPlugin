@@ -75,8 +75,8 @@ protected:
 
 private:
 
-  vtkPCLConversions(const vtkPCLConversions&); // Not implemented
-  void operator=(const vtkPCLConversions&); // Not implemented
+  vtkPCLConversions(const vtkPCLConversions&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLConversions&) VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

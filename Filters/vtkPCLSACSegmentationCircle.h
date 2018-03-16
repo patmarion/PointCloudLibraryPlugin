@@ -79,8 +79,10 @@ protected:
   virtual ~vtkPCLSACSegmentationCircle();
 
 private:
-  vtkPCLSACSegmentationCircle(const vtkPCLSACSegmentationCircle&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationCircle&);  // Not implemented.
+  vtkPCLSACSegmentationCircle(const vtkPCLSACSegmentationCircle&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLSACSegmentationCircle&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

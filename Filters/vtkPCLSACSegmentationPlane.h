@@ -71,8 +71,10 @@ protected:
   virtual ~vtkPCLSACSegmentationPlane();
 
 private:
-  vtkPCLSACSegmentationPlane(const vtkPCLSACSegmentationPlane&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationPlane&);  // Not implemented.
+  vtkPCLSACSegmentationPlane(const vtkPCLSACSegmentationPlane&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLSACSegmentationPlane&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

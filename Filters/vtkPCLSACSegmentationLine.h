@@ -69,8 +69,10 @@ protected:
   virtual ~vtkPCLSACSegmentationLine();
 
 private:
-  vtkPCLSACSegmentationLine(const vtkPCLSACSegmentationLine&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationLine&);  // Not implemented.
+  vtkPCLSACSegmentationLine(const vtkPCLSACSegmentationLine&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLSACSegmentationLine&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

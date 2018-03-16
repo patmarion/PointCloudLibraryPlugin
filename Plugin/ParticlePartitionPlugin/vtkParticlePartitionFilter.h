@@ -132,8 +132,10 @@ class VTK_EXPORT vtkParticlePartitionFilter : public vtkDataObjectAlgorithm
     vtkBoundsExtentTranslator *ExtentTranslator;
     //
   private:
-    vtkParticlePartitionFilter(const vtkParticlePartitionFilter&);  // Not implemented.
-    void operator=(const vtkParticlePartitionFilter&);  // Not implemented.
+    vtkParticlePartitionFilter(const vtkParticlePartitionFilter&)
+        VTKPCLFILTERS_DELETE_FUNCTION;
+    void operator=(const vtkParticlePartitionFilter&)
+        VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

@@ -49,8 +49,10 @@ protected:
   virtual int FillInputPortInformation(int port, vtkInformation* info);
 
 private:
-  vtkPCLNormalEstimation(const vtkPCLNormalEstimation&);  // Not implemented.
-  void operator=(const vtkPCLNormalEstimation&);  // Not implemented.
+  vtkPCLNormalEstimation(const vtkPCLNormalEstimation&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLNormalEstimation&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

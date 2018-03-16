@@ -50,8 +50,8 @@ protected:
   bool AnnotateLabelZero;
 
 private:
-  vtkAnnotateOBBs(const vtkAnnotateOBBs&);  // Not implemented.
-  void operator=(const vtkAnnotateOBBs&);  // Not implemented.
+  vtkAnnotateOBBs(const vtkAnnotateOBBs&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkAnnotateOBBs&) VTKPCLFILTERS_DELETE_FUNCTION;
 
   class vtkInternal;
   vtkInternal* Internal;

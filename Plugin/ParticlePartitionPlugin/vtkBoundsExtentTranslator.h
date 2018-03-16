@@ -96,8 +96,10 @@ protected:
   double MaximumGhostDistance;
    
 private:
-  vtkBoundsExtentTranslator(const vtkBoundsExtentTranslator&);  // Not implemented.
-  void operator=(const vtkBoundsExtentTranslator&);  // Not implemented.
+  vtkBoundsExtentTranslator(const vtkBoundsExtentTranslator&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkBoundsExtentTranslator&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

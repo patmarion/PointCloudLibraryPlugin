@@ -46,8 +46,8 @@ protected:
   virtual ~vtkPCLVoxelGrid();
 
 private:
-  vtkPCLVoxelGrid(const vtkPCLVoxelGrid&);  // Not implemented.
-  void operator=(const vtkPCLVoxelGrid&);  // Not implemented.
+  vtkPCLVoxelGrid(const vtkPCLVoxelGrid&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLVoxelGrid&) VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

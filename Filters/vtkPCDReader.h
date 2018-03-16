@@ -46,8 +46,8 @@ protected:
   virtual ~vtkPCDReader();
 
 private:
-  vtkPCDReader(const vtkPCDReader&);  // Not implemented.
-  void operator=(const vtkPCDReader&);  // Not implemented.
+  vtkPCDReader(const vtkPCDReader&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCDReader&) VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

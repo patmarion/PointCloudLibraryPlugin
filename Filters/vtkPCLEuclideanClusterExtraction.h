@@ -53,8 +53,10 @@ protected:
   virtual ~vtkPCLEuclideanClusterExtraction();
 
 private:
-  vtkPCLEuclideanClusterExtraction(const vtkPCLEuclideanClusterExtraction&);  // Not implemented.
-  void operator=(const vtkPCLEuclideanClusterExtraction&);  // Not implemented.
+  vtkPCLEuclideanClusterExtraction(const vtkPCLEuclideanClusterExtraction&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLEuclideanClusterExtraction&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

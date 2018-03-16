@@ -68,8 +68,10 @@ protected:
   virtual ~vtkPCLSACSegmentationCylinder();
 
 private:
-  vtkPCLSACSegmentationCylinder(const vtkPCLSACSegmentationCylinder&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationCylinder&);  // Not implemented.
+  vtkPCLSACSegmentationCylinder(const vtkPCLSACSegmentationCylinder&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLSACSegmentationCylinder&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

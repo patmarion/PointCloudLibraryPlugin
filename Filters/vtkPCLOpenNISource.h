@@ -47,8 +47,8 @@ protected:
   virtual ~vtkPCLOpenNISource();
 
 private:
-  vtkPCLOpenNISource(const vtkPCLOpenNISource&);  // Not implemented.
-  void operator=(const vtkPCLOpenNISource&);  // Not implemented.
+  vtkPCLOpenNISource(const vtkPCLOpenNISource&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLOpenNISource&) VTKPCLFILTERS_DELETE_FUNCTION;
 
   class vtkInternal;
   vtkInternal * Internal;
