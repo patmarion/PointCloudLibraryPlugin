@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLSACSegmentationCylinder : public vtkPolyDataAlg
 {
 public:
   vtkTypeMacro(vtkPCLSACSegmentationCylinder, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLSACSegmentationCylinder *New();
 
@@ -63,13 +63,15 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
   vtkPCLSACSegmentationCylinder();
-  virtual ~vtkPCLSACSegmentationCylinder();
+  virtual ~vtkPCLSACSegmentationCylinder() VTKPCLFILTERS_OVERRIDE;
 
 private:
-  vtkPCLSACSegmentationCylinder(const vtkPCLSACSegmentationCylinder&);  // Not implemented.
-  void operator=(const vtkPCLSACSegmentationCylinder&);  // Not implemented.
+  vtkPCLSACSegmentationCylinder(const vtkPCLSACSegmentationCylinder&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLSACSegmentationCylinder&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

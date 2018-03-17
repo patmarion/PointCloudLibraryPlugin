@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLOpenNISource : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLOpenNISource, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLOpenNISource *New();
 
@@ -41,14 +41,14 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
   vtkPCLOpenNISource();
-  virtual ~vtkPCLOpenNISource();
+  virtual ~vtkPCLOpenNISource() VTKPCLFILTERS_OVERRIDE;
 
 private:
-  vtkPCLOpenNISource(const vtkPCLOpenNISource&);  // Not implemented.
-  void operator=(const vtkPCLOpenNISource&);  // Not implemented.
+  vtkPCLOpenNISource(const vtkPCLOpenNISource&) VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLOpenNISource&) VTKPCLFILTERS_DELETE_FUNCTION;
 
   class vtkInternal;
   vtkInternal * Internal;

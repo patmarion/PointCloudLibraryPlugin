@@ -44,7 +44,7 @@ vtkPCDReader::~vtkPCDReader()
 //----------------------------------------------------------------------------
 int vtkPCDReader::RequestData(
   vtkInformation *vtkNotUsed(request),
-  vtkInformationVector **inputVector,
+  vtkInformationVector **vtkNotUsed(inputVector),
   vtkInformationVector *outputVector)
 {
   vtkInformation *outInfo = outputVector->GetInformationObject(0);

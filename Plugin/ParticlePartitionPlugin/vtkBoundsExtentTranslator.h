@@ -30,8 +30,8 @@ class VTK_EXPORT vtkBoundsExtentTranslator : public vtkExtentTranslator
 {
 public:
   vtkTypeMacro(vtkBoundsExtentTranslator,vtkExtentTranslator);
-  void PrintSelf(ostream& os, vtkIndent indent);
   
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
   static vtkBoundsExtentTranslator* New();
 
   // Description:
@@ -96,8 +96,10 @@ protected:
   double MaximumGhostDistance;
    
 private:
-  vtkBoundsExtentTranslator(const vtkBoundsExtentTranslator&);  // Not implemented.
-  void operator=(const vtkBoundsExtentTranslator&);  // Not implemented.
+  vtkBoundsExtentTranslator(const vtkBoundsExtentTranslator&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkBoundsExtentTranslator&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

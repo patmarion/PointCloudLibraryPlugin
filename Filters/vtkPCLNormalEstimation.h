@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLNormalEstimation : public vtkPolyDataAlgorithm
 {
 public:
   vtkTypeMacro(vtkPCLNormalEstimation, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLNormalEstimation *New();
 
@@ -40,17 +40,20 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
   vtkPCLNormalEstimation();
-  virtual ~vtkPCLNormalEstimation();
+  virtual ~vtkPCLNormalEstimation() VTKPCLFILTERS_OVERRIDE;
 
 
-  virtual int FillInputPortInformation(int port, vtkInformation* info);
+  virtual int FillInputPortInformation(int port,
+                                       vtkInformation* info) VTKPCLFILTERS_OVERRIDE;
 
 private:
-  vtkPCLNormalEstimation(const vtkPCLNormalEstimation&);  // Not implemented.
-  void operator=(const vtkPCLNormalEstimation&);  // Not implemented.
+  vtkPCLNormalEstimation(const vtkPCLNormalEstimation&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLNormalEstimation&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif

@@ -26,6 +26,7 @@
 #include <vtkFloatArray.h>
 #include <vtkIntArray.h>
 #include <vtkPointData.h>
+#include <vtkVersion.h>
 
 #include <pcl/io/pcd_io.h>
 
@@ -167,7 +168,11 @@ vtkSmartPointer<vtkPolyData> vtkPCLConversions::PolyDataFromPointCloud(pcl::Poin
       float point[3] = {cloud->points[i].x, cloud->points[i].y, cloud->points[i].z};
       unsigned char color[3] = {cloud->points[i].r, cloud->points[i].g, cloud->points[i].b}; 
       points->SetPoint(i, point);
+#if VTK_MAJOR_VERSION > 7 || (VTK_MAJOR_VERSION == 7 && VTK_MINOR_VERSION > 0)
+      rgbArray->SetTypedTuple(i, color);
+#else
       rgbArray->SetTupleValue(i, color);
+#endif
     }
   }
   else
@@ -184,7 +189,11 @@ vtkSmartPointer<vtkPolyData> vtkPCLConversions::PolyDataFromPointCloud(pcl::Poin
       float point[3] = {cloud->points[i].x, cloud->points[i].y, cloud->points[i].z};
       unsigned char color[3] = {cloud->points[i].r, cloud->points[i].g, cloud->points[i].b};
       points->SetPoint(j, point);
+#if VTK_MAJOR_VERSION > 7 || (VTK_MAJOR_VERSION == 7 && VTK_MINOR_VERSION > 0)
+      rgbArray->SetTypedTuple(j, color);
+#else
       rgbArray->SetTupleValue(j, color);
+#endif
       j++;
     }
     nr_points = j;
@@ -220,7 +229,11 @@ vtkSmartPointer<vtkPolyData> vtkPCLConversions::PolyDataFromPointCloud(pcl::Poin
       float point[3] = {cloud->points[i].x, cloud->points[i].y, cloud->points[i].z};
       unsigned char color[3] = {cloud->points[i].r, cloud->points[i].g, cloud->points[i].b}; 
       points->SetPoint(i, point);
+#if VTK_MAJOR_VERSION > 7 || (VTK_MAJOR_VERSION == 7 && VTK_MINOR_VERSION > 0)
+      rgbArray->SetTypedTuple(i, color);
+#else
       rgbArray->SetTupleValue(i, color);
+#endif
     }
   }
   else
@@ -237,7 +250,11 @@ vtkSmartPointer<vtkPolyData> vtkPCLConversions::PolyDataFromPointCloud(pcl::Poin
       float point[3] = {cloud->points[i].x, cloud->points[i].y, cloud->points[i].z};
       unsigned char color[3] = {cloud->points[i].r, cloud->points[i].g, cloud->points[i].b};
       points->SetPoint(j, point);
+#if VTK_MAJOR_VERSION > 7 || (VTK_MAJOR_VERSION == 7 && VTK_MINOR_VERSION > 0)
+      rgbArray->SetTypedTuple(j, color);
+#else
       rgbArray->SetTupleValue(j, color);
+#endif
       j++;
     }
     nr_points = j;

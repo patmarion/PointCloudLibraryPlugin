@@ -26,7 +26,7 @@ class VTKPCLFILTERS_EXPORT vtkPCLEuclideanClusterExtraction : public vtkPolyData
 {
 public:
   vtkTypeMacro(vtkPCLEuclideanClusterExtraction, vtkPolyDataAlgorithm);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  void PrintSelf(ostream& os, vtkIndent indent) VTKPCLFILTERS_OVERRIDE;
 
   static vtkPCLEuclideanClusterExtraction *New();
 
@@ -47,14 +47,16 @@ protected:
 
   virtual int RequestData(vtkInformation *request,
                           vtkInformationVector **inputVector,
-                          vtkInformationVector *outputVector);
+                          vtkInformationVector *outputVector) VTKPCLFILTERS_OVERRIDE;
 
   vtkPCLEuclideanClusterExtraction();
-  virtual ~vtkPCLEuclideanClusterExtraction();
+  virtual ~vtkPCLEuclideanClusterExtraction() VTKPCLFILTERS_OVERRIDE;
 
 private:
-  vtkPCLEuclideanClusterExtraction(const vtkPCLEuclideanClusterExtraction&);  // Not implemented.
-  void operator=(const vtkPCLEuclideanClusterExtraction&);  // Not implemented.
+  vtkPCLEuclideanClusterExtraction(const vtkPCLEuclideanClusterExtraction&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
+  void operator=(const vtkPCLEuclideanClusterExtraction&)
+      VTKPCLFILTERS_DELETE_FUNCTION;
 };
 
 #endif
