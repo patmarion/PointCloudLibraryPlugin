@@ -26,6 +26,7 @@
 #include "vtkThresholdPoints.h"
 #include "vtkOutlineSource.h"
 #include "vtkOBBTree.h"
+#include "vtkVersion.h"
 
 #include <Eigen/Geometry>
 
