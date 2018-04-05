@@ -27,6 +27,18 @@
 
 #include <pcl/features/normal_3d.h>
 
+// Fixes runtime symbol lookup error when compiling
+// with pcl 1.8 and gcc 7.  This should be fixed in
+// pcl 1.8.1.
+// See: https://github.com/introlab/rtabmap/issues/127
+#include <pcl/search/impl/search.hpp>
+#ifndef PCL_NO_PRECOMPILE
+#include <pcl/impl/instantiate.hpp>
+#include <pcl/point_types.h>
+PCL_INSTANTIATE(Search, PCL_POINT_TYPES)
+#endif // PCL_NO_PRECOMPILE
+
+
 //----------------------------------------------------------------------------
 namespace {
 
